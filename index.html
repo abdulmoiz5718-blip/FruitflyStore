@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8f5ff">
+  <title>FruitFly Browser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="browser" id="browser">
+    <header class="topline"><a class="brand" href="#home" id="homeButton" aria-label="FruitFly Browser home"><span class="brand-mark">F</span><span>FRUITFLY <i>BROWSER</i></span></a><span class="search-label"><span></span> GOOGLE SEARCH</span></header>
+    <form class="search-bar" id="searchForm"><span class="search-symbol">⌕</span><input id="address" type="text" autocomplete="off" placeholder="Search Google or enter a web address" aria-label="Search Google or enter a web address"><button type="submit" aria-label="Search">↗</button></form>
+    <section class="home-view" id="homeView">
+      <div class="welcome"><div class="welcome-orbit orbit-a"></div><div class="welcome-orbit orbit-b"></div><div class="welcome-stamp">YOUR<br>WEB, YOUR WAY</div><span class="welcome-star">✳</span><p class="eyebrow">A TINY WINDOW TO THE WEB</p><h1>Where to<br><em>next?</em></h1><p class="welcome-note">Search for something curious, or pop in a link and go exploring.</p></div>
+      <div class="quick-links"><div class="section-heading"><span>QUICK JUMPS</span><span>01 — 04</span></div><div class="link-grid"><a href="https://www.google.com" data-url="https://www.google.com"><span class="link-icon google-icon">G</span><span><b>Google</b><small>Search the web</small></span><i>↗</i></a><a href="https://www.youtube.com" data-url="https://www.youtube.com"><span class="link-icon youtube-icon">▶</span><span><b>YouTube</b><small>Watch something</small></span><i>↗</i></a><a href="https://github.com" data-url="https://github.com"><span class="link-icon github-icon">⌘</span><span><b>GitHub</b><small>Explore projects</small></span><i>↗</i></a><a href="https://en.wikipedia.org" data-url="https://en.wikipedia.org"><span class="link-icon wiki-icon">W</span><span><b>Wikipedia</b><small>Follow a rabbit hole</small></span><i>↗</i></a></div></div>
+      <footer class="home-footer"><span>MADE FOR CURIOUS MINDS</span><span>GOOGLE IS THE DEFAULT SEARCH</span></footer>
+    </section>
+    <section class="web-view" id="webView" hidden>
+      <div class="web-toolbar"><div class="web-status"><span class="status-dot"></span><span id="pageStatus">Ready to explore</span></div><div class="web-actions"><button id="openExternal" type="button">OPEN OUTSIDE ↗</button></div></div>
+      <iframe id="pageFrame" title="Web page preview" sandbox="allow-scripts allow-forms" referrerpolicy="no-referrer"></iframe>
+      <div class="embed-hint"><span>↗</span><span>Some websites block previews here. Use <b>Open outside</b> to view them in your browser.</span></div>
+    </section>
+    <div class="bottom-line"><span>FRUITFLY BROWSER <b>•</b> A WORK IN PROGRESS</span><span class="bottom-spark">✳</span></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
