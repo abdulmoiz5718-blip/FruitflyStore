@@ -20,3 +20,6 @@
 .back-home-button{margin-top:15px;padding:8px 11px;border:1px solid #dcebf5;border-radius:7px;background:#fff;color:#67849b;font:12px var(--display);letter-spacing:.04em;cursor:pointer;transition:background .15s,color .15s}
 .back-home-button:hover{background:#fbe7ea;color:var(--red)}
 @media(max-width:600px){.handoff-stage{padding:8px 13px 18px}.handoff-card{padding:19px 17px 17px}.handoff-art{height:100px}.handoff-card h2{font-size:30px}}
+.open-again-button{margin:14px 5px 0;padding:10px 13px;border:0;border-radius:8px;background:var(--red);color:#fff;font:14px var(--display);letter-spacing:.05em;cursor:pointer;box-shadow:0 5px 12px rgba(235,70,95,.16);transition:transform .15s,box-shadow .15s}
+.open-again-button:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(235,70,95,.22)}
+.open-again-button[hidden]{display:none}

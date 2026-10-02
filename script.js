@@ -15,13 +15,7 @@ function cleanUrl(value) {
   if (!['http:','https:'].includes(url.protocol)) throw new Error('Only web addresses beginning with http or https are supported.');
   return url.href;
 }
-function askParentToOpen(url) {
-  if (window.parent !== window) {
-    window.parent.postMessage({ type:'fruitfly-open-url', url }, '*');
-  } else {
-    window.location.assign(url);
-  }
-}
+function openInNewTab(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
 function visit(url, push = true) {
   currentUrl = url;
   address.value = url;
@@ -30,8 +24,10 @@ function visit(url, push = true) {
   pageStatus.textContent = new URL(url).hostname;
   $('#destinationTitle').textContent = new URL(url).hostname;
   $('#destinationAddress').textContent = url;
-  $('#destinationMessage').textContent = 'This site is ready to open in your browser, where its features and sign-in work normally.';
-  askParentToOpen(url);
+  $('#destinationMessage').textContent = 'This site opened in a new browser tab, where its features and sign-in work normally.';
+  $('.handoff-instruction').textContent = 'Opened in a new tab. You can open it again below.';
+  $('#openAgain').hidden = false;
+  openInNewTab(url);
   if (push) {
     visited.splice(visitIndex + 1);
     visited.push(url);
@@ -54,8 +50,10 @@ form.addEventListener('submit', event => {
     pageStatus.textContent = `Google Search · ${value}`;
     $('#destinationTitle').textContent = 'Google Search';
     $('#destinationAddress').textContent = value;
-    $('#destinationMessage').textContent = 'Your search is ready in Google. Open it in your browser to see the full results.';
-    askParentToOpen(searchUrl);
+    $('#destinationMessage').textContent = 'Your search opened in a new browser tab. Browse results there, or search again here.';
+    $('.handoff-instruction').textContent = 'Google Search opened in a new tab. Click below to open it again.';
+    $('#openAgain').hidden = false;
+    openInNewTab(searchUrl);
   }
 });
 $('#homeButton').addEventListener('click', event => {
@@ -64,6 +62,7 @@ $('#homeButton').addEventListener('click', event => {
   webView.hidden = true; homeView.hidden = false;
 });
 $('#homeFromWeb').addEventListener('click', () => $('#homeButton').click());
+$('#openAgain').addEventListener('click', () => { if (currentUrl) openInNewTab(currentUrl); });
 $$('.link-grid a').forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
   const url = link.dataset.url;
