@@ -4,7 +4,6 @@ const form = $('#searchForm');
 const address = $('#address');
 const homeView = $('#homeView');
 const webView = $('#webView');
-const pageFrame = $('#pageFrame');
 const pageStatus = $('#pageStatus');
 let currentUrl = '';
 const visited = [];
@@ -20,7 +19,7 @@ function askParentToOpen(url) {
   if (window.parent !== window) {
     window.parent.postMessage({ type:'fruitfly-open-url', url }, '*');
   } else {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.location.assign(url);
   }
 }
 function visit(url, push = true) {
@@ -29,7 +28,10 @@ function visit(url, push = true) {
   homeView.hidden = true;
   webView.hidden = false;
   pageStatus.textContent = new URL(url).hostname;
-  pageFrame.src = url;
+  $('#destinationTitle').textContent = new URL(url).hostname;
+  $('#destinationAddress').textContent = url;
+  $('#destinationMessage').textContent = 'This site is ready to open in your browser, where its features and sign-in work normally.';
+  askParentToOpen(url);
   if (push) {
     visited.splice(visitIndex + 1);
     visited.push(url);
@@ -46,24 +48,25 @@ form.addEventListener('submit', event => {
     catch (error) { pageStatus.textContent = error.message; webView.hidden = false; homeView.hidden = true; }
   } else {
     const searchUrl = googleSearch(value);
-    pageStatus.textContent = `Searching Google for “${value}”`;
+    currentUrl = searchUrl;
+    homeView.hidden = true;
+    webView.hidden = false;
+    pageStatus.textContent = `Google Search · ${value}`;
+    $('#destinationTitle').textContent = 'Google Search';
+    $('#destinationAddress').textContent = value;
+    $('#destinationMessage').textContent = 'Your search is ready in Google. Open it in your browser to see the full results.';
     askParentToOpen(searchUrl);
   }
 });
 $('#homeButton').addEventListener('click', event => {
   event.preventDefault();
-  pageFrame.src = 'about:blank'; currentUrl = ''; address.value = '';
+  currentUrl = ''; address.value = '';
   webView.hidden = true; homeView.hidden = false;
 });
-$('#openExternal').addEventListener('click', () => {
-  if (currentUrl) askParentToOpen(currentUrl);
-});
+$('#homeFromWeb').addEventListener('click', () => $('#homeButton').click());
 $$('.link-grid a').forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
   const url = link.dataset.url;
   address.value = url;
   visit(url);
 }));
-pageFrame.addEventListener('load', () => {
-  if (currentUrl) pageStatus.textContent = new URL(currentUrl).hostname;
-});

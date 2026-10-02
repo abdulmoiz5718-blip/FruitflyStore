@@ -20,9 +20,18 @@
       <footer class="home-footer"><span>MADE FOR CURIOUS MINDS</span><span>GOOGLE IS THE DEFAULT SEARCH</span></footer>
     </section>
     <section class="web-view" id="webView" hidden>
-      <div class="web-toolbar"><div class="web-status"><span class="status-dot"></span><span id="pageStatus">Ready to explore</span></div><div class="web-actions"><button id="openExternal" type="button">OPEN OUTSIDE ↗</button></div></div>
-      <iframe id="pageFrame" title="Web page preview" sandbox="allow-scripts allow-forms" referrerpolicy="no-referrer"></iframe>
-      <div class="embed-hint"><span>↗</span><span>Some websites block previews here. Use <b>Open outside</b> to view them in your browser.</span></div>
+      <div class="web-toolbar"><div class="web-status"><span class="status-dot"></span><span id="pageStatus">Ready to explore</span></div></div>
+      <div class="handoff-stage">
+        <article class="handoff-card">
+          <div class="handoff-art" aria-hidden="true"><span class="handoff-sun"></span><span class="handoff-wave wave-one"></span><span class="handoff-wave wave-two"></span><span class="handoff-arrow">↗</span></div>
+          <p class="eyebrow">YOUR NEXT STOP</p>
+          <h2 id="destinationTitle">Ready when you are.</h2>
+          <p class="handoff-copy" id="destinationMessage">Websites choose whether they allow embedded previews. Fruitfly opens pages in your browser so they work as intended.</p>
+          <div class="destination-chip"><span class="status-dot"></span><span id="destinationAddress">Search Google or enter a web address</span></div>
+          <p class="handoff-instruction">Your link is ready. Select <b>OPEN LINK ↗</b> in the top bar to continue.</p>
+          <button class="back-home-button" id="homeFromWeb" type="button">← BACK TO HOME</button>
+        </article>
+      </div>
     </section>
     <div class="bottom-line"><span>FRUITFLY BROWSER <b>•</b> A WORK IN PROGRESS</span><span class="bottom-spark">✳</span></div>
   </main>
